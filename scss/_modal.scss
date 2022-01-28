@@ -1,0 +1,92 @@
+.modal-container {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.modal {
+  min-width: 25rem;
+  background-color: white;
+  border-radius: 0.25rem;
+  padding: 1rem;
+
+  &-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 15%;
+  }
+
+  &-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
+
+  &-content {
+    padding-top: 1rem;
+  }
+
+  &-footer {
+    width: 100%;
+  }
+
+  &-close:hover {
+    cursor: pointer;
+  }
+}
+
+.new-game {
+  background-color: $primary-color;
+}
+
+.new-game-content {
+  &-row {
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+  &-label {
+    font-weight: 700;
+  }
+
+  &-options ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.35rem;
+
+    li {
+      background-color: $light-color;
+      text-align: center;
+      color: white;
+
+      &:hover {
+        background-color: $primary-color;
+      }
+    }
+
+    li.active {
+      background-color: $primary-color;
+    }
+
+    .num-players-btn {
+      width: 22%;
+    }
+
+    .themes-btn,
+    .grid-size-btn {
+      width: 47%;
+    }
+  }
+
+  .start-game-btn {
+    margin-top: 1rem;
+    width: 100%;
+  }
+}

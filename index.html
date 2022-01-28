@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <title>Memory Game</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap");
+    </style>
+    <script defer src="./js/main.js"></script>
+  </head>
+  <body>
+    <div class="modal-container new-game hidden">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-title">Modal Title</div>
+          <div class="modal-close">
+            <img src="./images/icon-close.svg" alt="Close" width="20" height="20" />
+          </div>
+        </div>
+        <div class="modal-content">
+          <div class="new-game-content">
+            <div class="new-game-content-row">
+              <div class="new-game-content-label">Select Theme</div>
+              <div class="new-game-content-options">
+                <ul>
+                  <li data-option-value="numbers" data-group="themes" class="themes-btn btn active">
+                    Numbers
+                  </li>
+                  <li data-option-value="icons" data-group="themes" class="themes-btn btn">
+                    Icons
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="new-game-content-row">
+              <div class="new-game-content-label">Number of Players</div>
+              <div class="new-game-content-options">
+                <ul>
+                  <li
+                    data-option-value="1"
+                    data-group="num-players"
+                    class="num-players-btn btn active"
+                  >
+                    1
+                  </li>
+                  <li data-option-value="2" data-group="num-players" class="num-players-btn btn">
+                    2
+                  </li>
+                  <li data-option-value="3" data-group="num-players" class="num-players-btn btn">
+                    3
+                  </li>
+                  <li data-option-value="4" data-group="num-players" class="num-players-btn btn">
+                    4
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="new-game-content-row">
+              <div class="new-game-content-label">Grid Size</div>
+              <div class="new-game-content-options">
+                <ul>
+                  <li
+                    data-option-value="4x4"
+                    data-group="grid-size"
+                    class="btn grid-size-btn active"
+                  >
+                    4x4
+                  </li>
+                  <li data-option-value="8x8" data-group="grid-size" class="btn grid-size-btn">
+                    8x8
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="new-game-content-row">
+              <button class="btn btn-primary start-game-btn">Start Game</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <header>
+        <nav>
+          <div class="title">memory</div>
+          <ul>
+            <li id="restartGameButton" class="btn btn-primary">Restart</li>
+            <li id="newGameButton" class="btn btn-secondary">New Game</li>
+          </ul>
+        </nav>
+      </header>
+      <section class="game-board"></section>
+      <footer>Footer</footer>
+    </div>
+  </body>
+</html>
