@@ -67,12 +67,10 @@ header {
     transform-style: preserve-3d;
   }
 
-  /* Do an horizontal flip when you move the mouse over the flip box container */
-  .tile.active:hover .tile-front {
-    cursor: pointer;
-    // transform: rotateY(180deg);
-    background-color: $light-color;
-  }
+  // .tile.active:hover .tile-front {
+  //   cursor: pointer;
+  //   background-color: $light-color;
+  // }
 
   .tile.active.flipped .tile-inner {
     transform: rotateY(180deg);

@@ -299,7 +299,6 @@ header li {
   -ms-grid-rows: 1fr;
       grid-template-rows: 1fr;
   /* This container is needed to position the front and back side */
-  /* Do an horizontal flip when you move the mouse over the flip box container */
   /* Position the front and back side */
   /* Style the front side (fallback if image is missing) */
   /* Style the back side */
@@ -322,11 +321,6 @@ header li {
   transition: transform 0.8s, -webkit-transform 0.8s;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-}
-
-.game-board .tile.active:hover .tile-front {
-  cursor: pointer;
-  background-color: #bccddc;
 }
 
 .game-board .tile.active.flipped .tile-inner {
@@ -457,5 +451,12 @@ footer .footer-container .num-moves {
   }
   .birthday-present img {
     width: 100%;
+  }
+}
+
+@media (min-width: 900px) {
+  .tile.active:hover .tile-front {
+    cursor: pointer;
+    background-color: #bccddc;
   }
 }
