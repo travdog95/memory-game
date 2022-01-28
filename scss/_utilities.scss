@@ -13,3 +13,40 @@
 .hidden {
   display: none !important;
 }
+
+.invisible {
+  opacity: 0 !important;
+}
+
+.blinking {
+  animation: blinkingText 1.2s infinite;
+}
+@keyframes blinkingText {
+  0% {
+    color: $primary-color;
+  }
+  49% {
+    color: $primary-color;
+  }
+  60% {
+    color: transparent;
+  }
+  99% {
+    color: transparent;
+  }
+  100% {
+    color: $primary-color;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 5s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

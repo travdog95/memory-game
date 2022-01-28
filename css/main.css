@@ -23,6 +23,74 @@
   display: none !important;
 }
 
+.invisible {
+  opacity: 0 !important;
+}
+
+.blinking {
+  -webkit-animation: blinkingText 1.2s infinite;
+          animation: blinkingText 1.2s infinite;
+}
+
+@-webkit-keyframes blinkingText {
+  0% {
+    color: #314859;
+  }
+  49% {
+    color: #314859;
+  }
+  60% {
+    color: transparent;
+  }
+  99% {
+    color: transparent;
+  }
+  100% {
+    color: #314859;
+  }
+}
+
+@keyframes blinkingText {
+  0% {
+    color: #314859;
+  }
+  49% {
+    color: #314859;
+  }
+  60% {
+    color: transparent;
+  }
+  99% {
+    color: transparent;
+  }
+  100% {
+    color: #314859;
+  }
+}
+
+.fade-in {
+  -webkit-animation: fadeIn 5s;
+          animation: fadeIn 5s;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .btn, .btn-primary, .btn-secondary {
   display: inline-block;
   border-radius: 1rem;
@@ -67,6 +135,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
+  z-index: 1000;
 }
 
 .modal {
@@ -238,8 +307,8 @@ header li {
 
 .game-board .tile {
   background-color: transparent;
-  width: 7.5rem;
-  height: 7.5rem;
+  width: 15rem;
+  height: 15rem;
 }
 
 .game-board .tile-inner {
@@ -271,9 +340,7 @@ header li {
   width: 100%;
   height: 100%;
   -webkit-backface-visibility: hidden;
-  /* Safari */
-  backface-visibility: hidden;
-  border-radius: 50%;
+          backface-visibility: hidden;
   display: -ms-grid;
   display: grid;
   place-items: center;
@@ -289,4 +356,106 @@ header li {
   color: white;
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
+}
+
+.game-board .tile-back img {
+  max-width: 100%;
+}
+
+footer {
+  width: 100%;
+  padding: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: 800;
+}
+
+footer .footer-container {
+  background-color: #bccddc;
+  margin: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 1rem 1.5rem;
+  border-radius: 0.25rem;
+  width: 15rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+footer .footer-container .label {
+  color: #5782a8;
+  font-size: 1.25rem;
+}
+
+footer .footer-container .score,
+footer .footer-container .num-moves {
+  font-size: 3rem;
+}
+
+.birthday-present {
+  position: absolute;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #b8a18a;
+}
+
+.birthday-present button {
+  margin: 1rem;
+  font-size: 2.5rem;
+}
+
+.message {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+@media (max-width: 375px) {
+  :root {
+    font-size: 9px;
+  }
+  .tile {
+    width: 8rem !important;
+    height: 8rem !important;
+  }
+  .birthday-present img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    font-size: 10px;
+  }
+  .tile {
+    width: 8rem !important;
+    height: 8rem !important;
+  }
+  .birthday-present img {
+    width: 100%;
+  }
 }

@@ -10,6 +10,8 @@
       @import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap");
     </style>
     <script defer src="./js/main.js"></script>
+    <script src="./models/player.js" module></script>
+    <script src="./models/game.js" module></script>
   </head>
   <body>
     <div class="modal-container new-game hidden">
@@ -85,15 +87,30 @@
     <div class="container">
       <header>
         <nav>
-          <div class="title">memory</div>
+          <div class="title">memo-remi game</div>
           <ul>
             <li id="restartGameButton" class="btn btn-primary">Restart</li>
-            <li id="newGameButton" class="btn btn-secondary">New Game</li>
+            <li id="newGameButton" class="btn btn-secondary hidden">New Game</li>
           </ul>
         </nav>
       </header>
+      <div class="message">Complete the game to earn your birthday present!</div>
       <section class="game-board"></section>
-      <footer>Footer</footer>
+      <footer class="footer">
+        <div class="footer-container">
+          <div class="label">Score</div>
+          <div class="score">0</div>
+        </div>
+        <div class="footer-container">
+          <div class="label">Moves</div>
+          <div class="num-moves">0</div>
+        </div>
+      </footer>
+    </div>
+    <div class="birthday-present">
+      <img src="./images/birthday-card-1.jpg" alt="Birthday Card" />
+      <img src="./images/birthday-card-2.jpg" alt="Birthday Card" />
+      <button id="backToGameButton" class="btn btn-secondary">Back to Game</button>
     </div>
   </body>
 </html>

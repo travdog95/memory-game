@@ -3,24 +3,58 @@ const modal = document.querySelector(".modal-container");
 const modalTitle = document.querySelector(".modal-title");
 const gameOptionsButtons = document.querySelectorAll(".new-game-content ul li");
 const gameBoard = document.querySelector(".game-board");
+const birthdayPresent = document.querySelector(".birthday-present");
+const message = document.querySelector(".message");
 
-let gameOptions = {
-  theme: "numbers",
-  "num-players": 1,
-  "grid-size": "4x4",
+//Global variables
+let boardLocked = false;
+let game = {};
+
+const pics = {
+  1: "Remi-1.jpg",
+  2: "Remi-2.jpg",
+  3: "Remi-3.jpg",
+  4: "Remi-4.jpg",
+  5: "Remi-5.jpg",
+  6: "Remi-6.jpg",
+  7: "Remi-7.jpg",
+  8: "Remi-8.png",
 };
 
 //functions
 const init = () => {
-  const numTiles = gameOptions["grid-size"] == "4x4" ? 16 : 64;
+  game = new Game({
+    id: 1,
+    options: {
+      theme: "numbers",
+      "num-players": 1,
+      "grid-size": "4x4",
+    },
+    numTiles: 16,
+    firstChoice: {},
+    secondChoice: {},
+    players: [],
+    timeElapased: 0,
+    matchesFound: 0,
+  });
+
+  gameBoard.innerHTML = "";
+  document.querySelector(".num-moves").innerHTML = 0;
+  document.querySelector(".score").innerHTML = 0;
+  birthdayPresent.classList.add("hidden");
+  birthdayPresent.classList.remove("fade-in");
+  message.classList.remove("blinking");
+  message.innerHTML = "Complete the game to earn your birthday present!";
+
+  game.numTiles = game.options["grid-size"] == "4x4" ? 16 : 64;
   let tileValues = [];
 
   //Determine board tiles
-  if (gameOptions.theme == "numbers") {
+  if (game.options.theme == "numbers") {
     let tileValue = 1;
 
     //add values to array
-    for (let i = 0; i < numTiles; i++) {
+    for (let i = 0; i < game.numTiles; i++) {
       tileValues.push(tileValue);
       if (i % 2 === 1) tileValue++;
     }
@@ -31,17 +65,23 @@ const init = () => {
   //Draw Board
   let html = "";
   //Add tiles to game board
-  for (let j = 0; j < numTiles; j++) {
+  for (let j = 0; j < game.numTiles; j++) {
     html += `
       <div data-position="${j + 1}" data-value="${tileValues[j]}" class="tile active">
         <div class="tile-inner">
           <div class="tile-front"></div>
-          <div class="tile-back">${tileValues[j]}</div>
+          <div class="tile-back"><img src="../images/${pics[tileValues[j]]}" alt="Remi" /></div>
         </div>
       </div>
     `;
   }
 
+  let p = 1;
+  for (p; p <= game.options["num-players"]; p++) {
+    game.players.push(new Player({ id: p, name: `Player ${p}` }));
+  }
+
+  // console.log(game);
   gameBoard.innerHTML = html;
 
   tileHandlers();
@@ -61,8 +101,85 @@ const tileHandlers = () => {
 
   tiles.forEach((tile) => {
     tile.addEventListener("click", function (e) {
-      this.classList.add("flipped");
+      if (boardLocked == false) {
+        this.classList.add("flipped");
+        processTileClick(tile, this);
+      }
     });
+  });
+};
+
+const processTileClick = async (tile, tileElement) => {
+  //Set first choice and exit
+  if (Object.keys(game.firstChoice).length === 0) {
+    game.firstChoice = {
+      position: tile.dataset.position,
+      value: tile.dataset.value,
+    };
+    return;
+  }
+
+  //Second choice
+  if (Object.keys(game.firstChoice).length > 0 && Object.keys(game.secondChoice).length === 0) {
+    //Don't allow any more clicks on game board
+    boardLocked = true;
+
+    //Increment number of moves
+    game.players[0].numMoves++;
+    document.querySelector(".num-moves").innerHTML = game.players[0].numMoves;
+
+    //Set second choice
+    game.secondChoice = {
+      position: tile.dataset.position,
+      value: tile.dataset.value,
+    };
+
+    //Determine if there's a match
+    if (game.firstChoice.value === game.secondChoice.value) {
+      //Increase player score
+      game.players[0].score++;
+      game.matchesFound++;
+      document.querySelector(".score").innerHTML = game.players[0].score;
+
+      //Game completed
+      if (game.matchesFound === game.numTiles / 2) {
+        console.log("game over");
+
+        message.innerHTML = "Well done! Loading your present...";
+        message.classList.add("blinking");
+
+        const wait = await delay(5000);
+
+        birthdayPresent.classList.remove("hidden");
+        birthdayPresent.classList.add("fade-in");
+      }
+    } else {
+      //Delay 2 seconds
+      const wait = await delay(2000);
+
+      //turn tiles over
+      tileElement.classList.remove("flipped"); //Second choice
+      document
+        .querySelector(`[data-position='${game.firstChoice.position}']`)
+        .classList.remove("flipped"); //First choice
+
+      //Go to next player, if applicable
+    }
+
+    //Clear choices
+    game.firstChoice = "";
+    game.secondChoice = "";
+
+    //Unlock game board
+    boardLocked = false;
+  }
+};
+
+const delay = (miliseconds) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(miliseconds);
+    }, miliseconds);
   });
 };
 
@@ -93,8 +210,17 @@ gameOptionsButtons.forEach((gameOptionsButton) => {
 
     //Save options
     const optionValue = this.dataset.optionValue;
-    gameOptions[groupName] = optionValue;
+    game.options[groupName] = optionValue;
   });
+});
+
+//Reset game
+document.getElementById("restartGameButton").addEventListener("click", (event) => {
+  init();
+});
+
+document.getElementById("backToGameButton").addEventListener("click", (event) => {
+  init();
 });
 
 init();

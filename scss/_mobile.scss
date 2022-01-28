@@ -1,0 +1,29 @@
+@media (max-width: 375px) {
+  :root {
+    font-size: 9px;
+  }
+
+  .tile {
+    width: 8rem !important;
+    height: 8rem !important;
+  }
+
+  .birthday-present img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    font-size: 10px;
+  }
+
+  .tile {
+    width: 8rem !important;
+    height: 8rem !important;
+  }
+
+  .birthday-present img {
+    width: 100%;
+  }
+}
