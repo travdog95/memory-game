@@ -70,7 +70,7 @@ const init = () => {
       <div data-position="${j + 1}" data-value="${tileValues[j]}" class="tile active">
         <div class="tile-inner">
           <div class="tile-front"></div>
-          <div class="tile-back"><img src="../images/${pics[tileValues[j]]}" alt="Remi" /></div>
+          <div class="tile-back"><img src="./images/${pics[tileValues[j]]}" alt="Remi" /></div>
         </div>
       </div>
     `;
