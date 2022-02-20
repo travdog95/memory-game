@@ -44,7 +44,7 @@ const init = () => {
   birthdayPresent.classList.add("hidden");
   birthdayPresent.classList.remove("fade-in");
   message.classList.remove("blinking");
-  message.innerHTML = "Complete the game to earn your birthday present!";
+  message.innerHTML = "";
 
   game.numTiles = game.options["grid-size"] == "4x4" ? 16 : 64;
   let tileValues = [];
@@ -145,13 +145,13 @@ const processTileClick = async (tile, tileElement) => {
       if (game.matchesFound === game.numTiles / 2) {
         console.log("game over");
 
-        message.innerHTML = "Well done! Loading your present...";
-        message.classList.add("blinking");
+        message.innerHTML = "Well done!";
+        // message.classList.add("blinking");
 
-        const wait = await delay(5000);
+        // const wait = await delay(5000);
 
-        birthdayPresent.classList.remove("hidden");
-        birthdayPresent.classList.add("fade-in");
+        // birthdayPresent.classList.remove("hidden");
+        // birthdayPresent.classList.add("fade-in");
       }
     } else {
       //Delay 2 seconds

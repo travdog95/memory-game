@@ -6,7 +6,7 @@
 :root {
   font-family: "Nanum Gothic", sans-serif;
   color: $primary-color;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 *,
@@ -53,8 +53,8 @@ header {
 
   .tile {
     background-color: transparent;
-    width: 15rem;
-    height: 15rem;
+    width: 10rem;
+    height: 10rem;
   }
 
   /* This container is needed to position the front and back side */

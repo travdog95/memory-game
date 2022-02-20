@@ -241,7 +241,7 @@
 :root {
   font-family: "Nanum Gothic", sans-serif;
   color: #314859;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 *,
@@ -306,8 +306,8 @@ header li {
 
 .game-board .tile {
   background-color: transparent;
-  width: 15rem;
-  height: 15rem;
+  width: 10rem;
+  height: 10rem;
 }
 
 .game-board .tile-inner {
@@ -438,6 +438,9 @@ footer .footer-container .num-moves {
   }
   .birthday-present img {
     width: 100%;
+  }
+  .title {
+    font-size: 2rem;
   }
 }
 
